@@ -1,10 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Router, Route } from 'react-router';
 import App from './App';
 
 const Root = ({store}) => (
   <Provider store={store}>
-    <App />
+    <Router>
+      <Route path="/" component={App} />
+    </Router>
   </Provider>
 )
 
