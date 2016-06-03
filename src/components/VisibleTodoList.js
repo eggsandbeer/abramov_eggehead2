@@ -24,17 +24,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onTodoClick: (id) => {
-      dispatch(toggleTodo(id));
-    },
-  };
-};
-
 const VisibleTodoList = connect(
   mapStateToProps,
-  mapDispatchToProps
+  {onTodoClick: toggleTodo}
 )(TodoList);
 
 export default VisibleTodoList;
