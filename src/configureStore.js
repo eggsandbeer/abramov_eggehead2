@@ -7,8 +7,6 @@ const addLoggingToDispatch = (store) => {
   const rawDispatch = store.dispatch;
   return (action) => {
 
-    console.log('face')
-
     if(!console.group){
       return rawDispatch;
     }
@@ -25,21 +23,27 @@ const addLoggingToDispatch = (store) => {
 }
 
 const configureStore = () => {
-  const presistedState = loadState();
+  // const presistedState = loadState();
   const store = createStore(
-    todoApp,
-    presistedState
+    todoApp
+    // presistedState
   );
 
   if (process.env.NODE_ENV !== 'production') {
     store.dispatch = addLoggingToDispatch(store);
   }
 
-  store.subscribe(throttle(() => {
+  // store.subscribe(throttle(() => {
+  //   saveState({
+  //     todos: store.getState().todos
+  //   });
+  // }, 1000));
+
+  store.subscribe(() => {
     saveState({
       todos: store.getState().todos
     });
-  }, 1000));
+  });
 
   return store;
 }
