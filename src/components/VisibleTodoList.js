@@ -5,7 +5,7 @@ import { getVisibleTodos } from '../reducers';
 import TodoList from './TodoList';
 
 const mapStateToProps = (state, params) => ({
-  todos: getVisibleTodos(state, params.filter || 'all')
+  todos: getVisibleTodos(state, params.filter || all)
 });
 
 const VisibleTodoList = connect(
