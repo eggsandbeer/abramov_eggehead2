@@ -4,6 +4,14 @@ import todo from './todo';
 const byId = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_TODO':
+    case 'RECEIVE_TODOS':
+
+      // console.log(action.response)
+      // console.log(action)
+
+      return {
+        ...state
+      }
     case 'TOGGLE_TODO':
       return {
         ...state,
