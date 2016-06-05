@@ -3,33 +3,27 @@ import todoApp from './reducers';
 import {loadState, saveState} from './localStorage';
 import throttle from 'lodash/throttle';
 
-const addLoggingToDispatch = (store) => {
-  const rawDispatch = store.dispatch;
+const logger = (store) => (next) => {
+  if(!console.group){
+    return next;
+  }
   return (action) => {
-
-    if(!console.group){
-      return rawDispatch;
-    }
-
     console.group(action.type);
     console.log('%c prev state', 'color: gray', store.getState());
     console.log('%c action','color: blue', action);
-    const returnValue = rawDispatch(action);
+    const returnValue = next(action);
     console.log('%c prev state', 'color: green', store.getState());
     console.groupEnd(action.type);
 
     return returnValue;
-  };
+  }
 }
 
-const addPromiseSupportToDispatch = (store) => {
-  const rawDispatch = store.dispatch;
-  return (action) => {
-    if(typeof action.then === 'function'){
-      return action.then(rawDispatch)
-    }
-    return rawDispatch(action);
+const promise = (store) => (next) => (action) => {
+  if(typeof action.then === 'function'){
+    return action.then(next)
   }
+  return next(action);
 }
 
 const configureStore = () => {
@@ -38,12 +32,17 @@ const configureStore = () => {
     todoApp
     // presistedState
   );
-
-  if (process.env.NODE_ENV !== 'production') {
-    store.dispatch = addLoggingToDispatch(store);
+  const middlewares = [promise];
+  const wrapDispacthWithMiddlewares = (store, middlewares) => {
+    middlewares.slice().reverse().forEach(middleware =>
+      store.dispatch = middleware(store)(store.dispatch)
+    )
   }
 
-  store.dispatch = addPromiseSupportToDispatch(store);
+  if (process.env.NODE_ENV !== 'production') {
+    middlewares.push(logger);
+  }
+
 
   // store.subscribe(throttle(() => {
   //   saveState({
@@ -56,6 +55,8 @@ const configureStore = () => {
   //     todos: store.getState().todos
   //   });
   // });
+
+  wrapDispacthWithMiddlewares(store, middlewares)
 
   return store;
 }
