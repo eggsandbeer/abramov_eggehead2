@@ -1,4 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleWare } from 'redux';
+import redux_promise from 'redux-promise';
+import redux_logger from 'redux-logger';
 import todoApp from './reducers';
 import {loadState, saveState} from './localStorage';
 import throttle from 'lodash/throttle';
@@ -28,20 +30,24 @@ const promise = (store) => (next) => (action) => {
 
 const configureStore = () => {
   // const presistedState = loadState();
-  const store = createStore(
-    todoApp
-    // presistedState
-  );
-  const middlewares = [promise];
-  const wrapDispacthWithMiddlewares = (store, middlewares) => {
-    middlewares.slice().reverse().forEach(middleware =>
-      store.dispatch = middleware(store)(store.dispatch)
-    )
-  }
+
+  const middlewares = [redux_promise];
+  // const wrapDispacthWithMiddlewares = (store, middlewares) => {
+  //   middlewares.slice().reverse().forEach(middleware =>
+  //     store.dispatch = middleware(store)(store.dispatch)
+  //   )
+  // }
 
   if (process.env.NODE_ENV !== 'production') {
-    middlewares.push(logger);
+    middlewares.push(redux_logger);
   }
+
+  return createStore(
+    todoApp,
+    // presistedState,
+    applyMiddleWare(...middlewares)
+
+  );
 
 
   // store.subscribe(throttle(() => {
