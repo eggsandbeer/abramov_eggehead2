@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import redux_promise from 'redux-promise';
+// import redux_promise from 'redux-promise';
 import redux_logger from 'redux-logger';
 import todoApp from './reducers';
 // import {loadState, saveState} from './localStorage';
@@ -13,10 +13,16 @@ import todoApp from './reducers';
 //   return next(action);
 // }
 
+
+const thunk = (store) => (next) => (action) =>
+  typeof action === 'function' ?
+    action(store.dispatch) :
+    next(action);
+
 const configureStore = () => {
   // const presistedState = loadState();
 
-  const middlewares = [redux_promise];
+  const middlewares = [thunk];
   // const wrapDispacthWithMiddlewares = (store, middlewares) => {
   //   middlewares.slice().reverse().forEach(middleware =>
   //     store.dispatch = middleware(store)(store.dispatch)
