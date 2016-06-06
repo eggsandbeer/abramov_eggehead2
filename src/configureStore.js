@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 // import redux_promise from 'redux-promise';
+import thunk from 'redux-thunk';
 import redux_logger from 'redux-logger';
 import todoApp from './reducers';
 // import {loadState, saveState} from './localStorage';
@@ -14,10 +15,10 @@ import todoApp from './reducers';
 // }
 
 
-const thunk = (store) => (next) => (action) =>
-  typeof action === 'function' ?
-    action(store.dispatch) :
-    next(action);
+// const thunk = (store) => (next) => (action) =>
+//   typeof action === 'function' ?
+//     action(store.dispatch, store.getState) :
+//     next(action);
 
 const configureStore = () => {
   // const presistedState = loadState();
