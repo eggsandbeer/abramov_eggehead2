@@ -42,7 +42,7 @@ export const toddleTodo = (id) =>
 
 export const fetchTodos = (filter) =>
   delay(500).then(() => {
-    if(Math.random() > 0.3) {
+    if(Math.random() < 0.3) {
       throw new Error('ERROR, WILL ROBINSON!')
     } else {
       switch (filter) {
