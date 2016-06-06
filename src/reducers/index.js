@@ -23,11 +23,6 @@ export const getVisibleTodos = (state, filter) => {
   const ids = fromList.getIds(state.listByFilter[filter]);
   return ids.map(id => fromId.getTodo(state.byId, id));
 
-
-
-
-
-
   // const allTodos = getAllTodos(state);
   //
   // switch (filter) {
@@ -41,3 +36,6 @@ export const getVisibleTodos = (state, filter) => {
   //     throw new Error(`Unknown filter: ${filter}.`);
   // }
 };
+
+export const getIsFetching = (state, filter) =>
+  fromList.getIsFetching(state.listByFilter[filter])
