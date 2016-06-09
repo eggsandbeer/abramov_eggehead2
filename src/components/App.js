@@ -1,22 +1,10 @@
 import React, {PropTypes} from 'react';
-import Footer from './Footer';
-import AddTodo from './AddTodo';
-import VisibleTodoList from './VisibleTodoList';
+import TodoApp from './TodoApp';
 
-const App = ( {params} ) => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList
-      filter={params.filter || 'all' }
-    />
-    <Footer />
-  </div>
-);
-
-App.propTypes = {
-  params: PropTypes.shape({
-    filter: PropTypes.string,
-  }),
+const App = ( {children} ) => {
+  return (<div>
+    {children}
+  </div>)
 };
 
 export default App;

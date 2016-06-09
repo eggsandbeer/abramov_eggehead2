@@ -7,8 +7,8 @@ const createList = ( filter ) => {
     const {completed} = entities.todo[toggleId];
     const shouldRemove = (
       (completed && filter === 'active') ||
-      (!completed && filter === 'completed') ||
-    )
+      (!completed && filter === 'completed')
+    );
     return shouldRemove ?
       state.filter(id => id !== toggleId) :
       state

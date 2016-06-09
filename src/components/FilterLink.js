@@ -1,17 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const FilterLink = ({ filter, children }) => (
+const FilterLink = ({ filter, children }) => {
+  return (
   <Link
-    to={filter === 'all' ? '' : filter }
+    to={filter === '/todo/all' ? '/todo' : filter }
     activeStyle={{
       textDecoration: 'none',
       color: 'black'
     }}
   >
     {children}
-  </Link>
-)
+  </Link>)
+}
 
 export default FilterLink;
 
