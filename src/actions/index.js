@@ -76,6 +76,9 @@ export const toggleTodo = (id) => (dispatch) =>
   })
 
 export const handleInputChange = (value, key_name) => (dispatch) => {
-  console.log(key_name)
-  console.log(value)
+  dispatch({
+    type:'FORM_CHANGE_INPUT',
+    key_name,
+    value
+  })
 }

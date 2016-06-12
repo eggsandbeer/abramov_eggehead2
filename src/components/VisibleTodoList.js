@@ -46,10 +46,10 @@ class VisibleTodoList extends Component {
 const mapStateToProps = (state, params) => {
   const filter = params.filter || 'all';
   return {
-      todos: getVisibleTodos(state, filter),
-      errorMessage: getErrorMessage(state, filter),
-      isFetching: getIsFetching(state, filter),
-      filter
+    todos: getVisibleTodos(state, filter),
+    errorMessage: getErrorMessage(state, filter),
+    isFetching: getIsFetching(state, filter),
+    filter
   }
 };
 

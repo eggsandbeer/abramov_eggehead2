@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { withRouter } from 'react-router';
 import Form from './form';
-import { getVisibleTodos, getFormErrorMessage, getFormIsFetching } from '../reducers';
+import { getFormData, getFormErrorMessage, getFormIsFetching } from '../reducers';
 
 class FormWrapper extends Component {
   componentDidMount(){
@@ -21,7 +21,9 @@ class FormWrapper extends Component {
       return <p>Loading...</p>
     }
 
-    if (Object.keys(data).length !== 0) {
+    console.log(this.props)
+
+    if (data) {
       return (
         <div>
           <Form
@@ -38,14 +40,14 @@ class FormWrapper extends Component {
 }
 
 const mapStateToProps = (state, params) => {
-  const {formData} = state;
+  // const {formData} = state;
+  console.log(state)
+  // console.log(getFormData(formData))
 
   return {
-    errorMessage: getFormErrorMessage(formData),
-    isFetching: getFormIsFetching(formData),
-    data: {
-      ...state.formData.data
-    }
+    errorMessage: getFormErrorMessage(state),
+    isFetching: getFormIsFetching(state),
+    data: getFormData(state)
   }
 };
 

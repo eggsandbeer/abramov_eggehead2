@@ -1,16 +1,16 @@
 import React, {PropTypes} from 'react';
-import Input from './input';
+import TextInput from './input';
 
 const Form = ({data, onInputChange}) => {
 
-  console.log(data)
+  console.log(data.name)
 
   return (
     <form>
-      <Input
-        name={data.name}
-        value={data.name}
-        onChange={(value) => onInputChange(value, data.name)}
+      <TextInput
+        input_value={data.name}
+        name="name"
+        onChange={(input_value) => onInputChange(input_value, "name")}
       />
 
     </form>

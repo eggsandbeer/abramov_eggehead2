@@ -25,9 +25,8 @@ export default index;
 const getAllTodos = (state) =>
   state.allIds.map(id => state.byId[id]);
 
-
 export const getFormData = (state) => {
-  return state
+  return formDataFuncs.getFormData(state)
 }
 
 export const getVisibleTodos = (state, filter) => {

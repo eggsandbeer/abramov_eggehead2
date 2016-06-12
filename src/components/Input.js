@@ -1,9 +1,13 @@
 import React, {PropTypes} from 'react';
 
-const Input = ({name, value, onChange}) => (
-  <div>
-    <input type="text" name={name} value={name} onChange={e => {onChange(e.target.value)}} />
-  </div>
-)
+const TextInput = ({input_value, onChange}) => {
+  return(
+    <div>
+      <input type="text" value={input_value} onChange={e => {onChange(e.target.value)}} />
+    </div>
+  )
+}
 
-export default Input;
+
+
+export default TextInput;
