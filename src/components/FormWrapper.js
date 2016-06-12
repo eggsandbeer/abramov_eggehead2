@@ -19,9 +19,6 @@ class FormWrapper extends Component {
     if(isFetching){
       return <p>Loading...</p>
     }
-
-    console.log(this.props)
-
     return (
       <div>
         Formwrapper
