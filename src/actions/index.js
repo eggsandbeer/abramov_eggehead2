@@ -74,3 +74,8 @@ export const toggleTodo = (id) => (dispatch) =>
       response: normalize(response, schema.todo)
     })
   })
+
+export const handleInputChange = (value, key_name) => (dispatch) => {
+  console.log(key_name)
+  console.log(value)
+}

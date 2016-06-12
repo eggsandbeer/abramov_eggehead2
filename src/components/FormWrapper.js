@@ -2,6 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { withRouter } from 'react-router';
+import Form from './form';
 import { getVisibleTodos, getFormErrorMessage, getFormIsFetching } from '../reducers';
 
 class FormWrapper extends Component {
@@ -14,17 +15,25 @@ class FormWrapper extends Component {
 
   }
   render() {
-    const {errorMessage, isFetching, children} = this.props;
+    const {errorMessage, isFetching, handleInputChange, data} = this.props;
 
     if(isFetching){
       return <p>Loading...</p>
     }
-    return (
-      <div>
-        Formwrapper
-        {children}
-      </div>
-    )
+
+    if (Object.keys(data).length !== 0) {
+      return (
+        <div>
+          <Form
+            data={data}
+            onInputChange={handleInputChange}
+          />
+        </div>
+      )
+    } else {
+      return (<div></div>)
+    }
+
   }
 }
 
