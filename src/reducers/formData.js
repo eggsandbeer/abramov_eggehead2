@@ -2,13 +2,10 @@ import {combineReducers} from 'redux';
 
 const formData = (state = {}, action) => {
 
-  const ids = (state = [], action) => {
+  const data = (state = [], action) => {
     switch(action.type) {
       case 'FETCH_FORMDATA_SUCCESS':
-
-        consoe.log(action.response.result)
-
-        return action.response.result;
+        return action.response;
       default:
         return state
     }
@@ -16,9 +13,6 @@ const formData = (state = {}, action) => {
 
 
   const isFetching = (state = false, action ) => {
-
-    console.log(action.type)
-
     switch (action.type) {
       case 'FETCH_FORMDATA_REQUEST':
         return true;
@@ -44,6 +38,7 @@ const formData = (state = {}, action) => {
   }
 
   return combineReducers({
+    data,
     isFetching,
     errorMessage
   });

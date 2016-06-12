@@ -20,6 +20,7 @@ class FormWrapper extends Component {
       return <p>Loading...</p>
     }
 
+    console.log(this.props)
 
     return (
       <div>
@@ -31,11 +32,14 @@ class FormWrapper extends Component {
 }
 
 const mapStateToProps = (state, params) => {
-  console.log(state)
+  const {formData} = state;
 
   return {
-    errorMessage: getFormErrorMessage(state),
-    isFetching: getFormIsFetching(state)
+    errorMessage: getFormErrorMessage(formData),
+    isFetching: getFormIsFetching(formData),
+    data: {
+      ...state.formData.data
+    }
   }
 };
 

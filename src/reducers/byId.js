@@ -1,6 +1,4 @@
 const byId = (state = {}, action) => {
-  // console.log('?')
-  console.log(action.response)
 
   if(action.type === 'FETCH_TODOS_SUCCESS' || action.type === 'ADD_TODO_SUCCESS' ){
     return {

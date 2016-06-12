@@ -44,5 +44,5 @@ export const getErrorMessage = (state, filter) =>
 export const getFormErrorMessage = (state) =>
   formDataFuncs.getFormErrorMessage(state)
 
-export const getFormIsFetching = (state) => 
+export const getFormIsFetching = (state) =>
   formDataFuncs.getFormIsFetching(state)
