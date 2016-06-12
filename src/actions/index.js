@@ -3,6 +3,32 @@ import * as schema from './schema';
 import * as api from '../api';
 import { getIsFetching } from '../reducers';
 
+
+export const fetchFormData = () => (dispatch, getState) => {
+  dispatch({
+    type: 'FETCH_FORMDATA_REQUEST'
+  });
+
+  return api.fetchFormData().then(
+    response => {
+          console.log(response)
+      dispatch({
+        type: 'FETCH_FORMDATA_SUCCESS',
+        response
+      })
+    },
+    error => {
+      dispatch({
+        type: 'FETCH_FORMDATA_FAILURE',
+        message: error.message || 'Somethings fucked in the forms'
+      })
+    }
+
+  )
+
+}
+
+
 export const fetchTodos = (filter) => (dispatch, getState) => {
 
   if(getIsFetching(getState(), filter)) {

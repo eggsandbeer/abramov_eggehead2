@@ -16,8 +16,18 @@ const todos = combineReducers({
 
 export default todos;
 
+
+
 const getAllTodos = (state) =>
   state.allIds.map(id => state.byId[id]);
+
+
+export const getFormData = (state) => {
+
+  console.log(state)
+
+  return state
+}
 
 export const getVisibleTodos = (state, filter) => {
   const ids = fromList.getIds(state.listByFilter[filter]);

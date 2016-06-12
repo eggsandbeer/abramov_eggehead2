@@ -17,10 +17,21 @@ const fakeDatabase = {
     text: 'let’s go',
     completed: false,
   }],
+  formData: {
+    id: v4(),
+    name: 'Cameron Strandberg',
+    phoneNumber: '778 989 0023',
+    occupation: 'super cool bro'
+  }
 };
 
 const delay = (ms) =>
   new Promise(resolve => setTimeout(resolve, ms));
+
+export const fetchFormData = () =>
+  delay(500).then(() => {
+    return fakeDatabase.formData;
+  })
 
 export const addTodo = (text) =>
   delay(500).then(() =>{
