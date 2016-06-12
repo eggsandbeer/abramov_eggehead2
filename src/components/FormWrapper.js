@@ -21,7 +21,7 @@ class FormWrapper extends Component {
       return <p>Loading...</p>
     }
 
-    console.log(this.props)
+    // console.log('DATA',data)
 
     if (data) {
       return (
@@ -39,9 +39,9 @@ class FormWrapper extends Component {
   }
 }
 
-const mapStateToProps = (state, params) => {
+const mapStateToProps = (state) => {
   // const {formData} = state;
-  console.log(state)
+  // console.log(state)
   // console.log(getFormData(formData))
 
   return {

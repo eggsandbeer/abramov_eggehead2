@@ -10,10 +10,6 @@ const listByFilter = combineReducers({
   completed: createList('completed')
 });
 
-const formDataMain = combineReducers({
-  all: formData()
-});
-
 const index = combineReducers({
   byId,
   listByFilter,
@@ -24,10 +20,6 @@ export default index;
 
 const getAllTodos = (state) =>
   state.allIds.map(id => state.byId[id]);
-
-export const getFormData = (state) => {
-  return formDataFuncs.getFormData(state)
-}
 
 export const getVisibleTodos = (state, filter) => {
   const ids = fromList.getIds(state.listByFilter[filter]);
@@ -40,8 +32,11 @@ export const getIsFetching = (state, filter) =>
 export const getErrorMessage = (state, filter) =>
   fromList.getErrorMessage(state.listByFilter[filter])
 
+export const getFormData = (state) =>
+  formDataFuncs.getFormData(state.formData)
+
 export const getFormErrorMessage = (state) =>
-  formDataFuncs.getFormErrorMessage(state)
+  formDataFuncs.getFormErrorMessage(state.formData)
 
 export const getFormIsFetching = (state) =>
-  formDataFuncs.getFormIsFetching(state)
+  formDataFuncs.getFormIsFetching(state.formData)
