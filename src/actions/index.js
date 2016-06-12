@@ -11,7 +11,6 @@ export const fetchFormData = () => (dispatch, getState) => {
 
   return api.fetchFormData().then(
     response => {
-          console.log(response)
       dispatch({
         type: 'FETCH_FORMDATA_SUCCESS',
         response

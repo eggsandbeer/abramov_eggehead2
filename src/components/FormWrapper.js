@@ -2,32 +2,40 @@ import React, {PropTypes, Component} from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { withRouter } from 'react-router';
-import { getVisibleTodos, getErrorMessage, getIsFetching } from '../reducers';
+import { getVisibleTodos, getFormErrorMessage, getFormIsFetching } from '../reducers';
 
 class FormWrapper extends Component {
   componentDidMount(){
     this.fetchData();
   }
   fetchData(){
-    console.log('fetch that data');
+    // console.log('fetch that data');
     this.props.fetchFormData()
 
   }
   render() {
+    const {errorMessage, isFetching, children} = this.props;
+
+    if(isFetching){
+      return <p>Loading...</p>
+    }
+
+
     return (
       <div>
         Formwrapper
-        {this.props.children}
+        {children}
       </div>
     )
   }
 }
 
 const mapStateToProps = (state, params) => {
-
-  console.log(state, params)
+  console.log(state)
 
   return {
+    errorMessage: getFormErrorMessage(state),
+    isFetching: getFormIsFetching(state)
   }
 };
 
