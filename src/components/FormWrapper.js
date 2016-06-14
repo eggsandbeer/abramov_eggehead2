@@ -10,9 +10,7 @@ class FormWrapper extends Component {
     this.fetchData();
   }
   fetchData(){
-    // console.log('fetch that data');
     this.props.fetchFormData()
-
   }
   render() {
     const {errorMessage, isFetching, handleInputChange, data} = this.props;
@@ -20,9 +18,6 @@ class FormWrapper extends Component {
     if(isFetching){
       return <p>Loading...</p>
     }
-
-    // console.log('DATA',data)
-
     if (data) {
       return (
         <div>
@@ -40,10 +35,6 @@ class FormWrapper extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // const {formData} = state;
-  // console.log(state)
-  // console.log(getFormData(formData))
-
   return {
     errorMessage: getFormErrorMessage(state),
     isFetching: getFormIsFetching(state),
