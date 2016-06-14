@@ -8,6 +8,4 @@ const TextInput = ({input_value, onChange}) => {
   )
 }
 
-
-
 export default TextInput;
